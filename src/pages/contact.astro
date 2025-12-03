@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/Sections/PageHeader.astro";
+import Button from "../components/UI/Button.astro";
+---
+
+<BaseLayout
+  title="お問い合わせ - ギークのためのサイクリング"
+  description="ご質問・ご意見はこちらからお気軽にお問い合わせください。"
+>
+  <PageHeader 
+    title="お問い合わせ" 
+    subtitle="ご質問・ご意見はこちらから"
+    backgroundImage="/uploads/contact-header-bg.webp"
+  />
+
+  <div style="display:flex; justify-content:center;">
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSe9BxIWYj4sjy2m9aAq33lzlGnNPn3B_Npk3y2Lku2jMJQhZw/viewform?embedded=true"
+      style="width:100%; max-width:640px; height:980px; border:0;"
+      loading="lazy"
+      aria-label="Google Form"
+    >読み込んでいます…</iframe>
+  </div>
+</BaseLayout>
