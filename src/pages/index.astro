@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroSection from "../components/Sections/HeroSection.astro";
+import RouteList from "../components/Sections/RouteList.astro";
+import LatestBlogList from "../components/Sections/LatestBlogList.astro";
+import Button from "../components/UI/Button.astro";
+---
+
+<BaseLayout>
+  <HeroSection 
+    title="自転車で旅をしよう！"
+    subtitle="ギークのためのサイクリング情報共有サイト"
+    backgroundImage="/uploads/hero-bg.webp"
+    ctaText="サイクリングルートを探す"
+    ctaLink="/routes"
+    secondaryCtaText="ブログ記事を読む"
+    secondaryCtaLink="/blog"
+  />
+  
+  <!-- Routes Section -->
+  <RouteList />
+
+  <!-- Latest Blog Articles Section -->
+  <LatestBlogList />
+
+  <!-- About Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img 
+            src="/uploads/cycling-default.webp" 
+            alt="Our Site" 
+            class="rounded-lg shadow-lg object-cover w-full h-full"
+          />
+        </div>
+        
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">このサイトについて</h2>
+          <p class="text-gray-700 mb-6 text-lg">
+            技術や理論を愛するすべてのギークたちへ。自転車に乗ろう！
+          </p>
+          <p class="text-gray-700 mb-6 text-lg">
+            このサイトは，ギークなサイクリストのための情報共有プラットフォームです。全国の自治体が提供するサイクリングルート，自転車ネットワークを紹介しています。自転車旅はもちろん，通勤・通学などの日常生活におけるルート選びにもご活用ください。
+          </p>
+          <p class="text-gray-700 mb-8 text-lg">
+            また，他の自転車情報サイトとは違い，ギークの視点から，自転車に関するさまざまな情報を発信しています。サイクリングルートのOSMへのマッピング方法や，道路交通法に基づいた自転車の厳密なルールなど，ここでしか得られない情報をご用意しております。
+          </p>
+          
+          <Button href="/about-us">
+            このサイトについて詳しく知る
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+  <!-- Call to Action -->
+  <section 
+    class="py-20 bg-cover bg-center text-white"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/uploads/cycling-scenery.webp)"
+  >
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">自転車普及に貢献しよう</h2>
+        <p class="text-xl mb-8">
+          自転車の魅力を広め、より良いサイクリング環境作りに貢献しよう
+        </p>
+        <ul class="text-xl mb-8 text-center mx-auto list-disc list-inside">
+          <li>OpenStreetMapに自転車ルートを追加する</li>
+          <li>Mapiliaryにストリートビューをアップロードする</li>
+          <li>本サイトにサイクリングルート情報を提供する</li>
+        </ul>
+
+        <p class="text-xl mb-8">
+          ネット環境さえあれば，誰でも参加できます。インドア派のギークにぴったりです！
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+          <Button href="/about" variant="primary" size="lg">
+            このサイトについて
+          </Button>
+          
+          <Button href="/contact" variant="outline" size="lg" class="bg-white/10 text-white border-white hover:bg-white hover:text-gray-900 backdrop-blur-sm">
+            お問い合わせ
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

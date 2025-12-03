@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+  <!-- Combined bicycle + geek glasses favicon -->
+  <!-- Wheels -->
+  <circle cx="9" cy="22" r="5" stroke="#0f172a" stroke-width="2" fill="#ffffff00" />
+  <circle cx="23" cy="22" r="5" stroke="#0f172a" stroke-width="2" fill="#ffffff00" />
+
+  <!-- Frame -->
+  <path d="M11 20 L15 14 L19 18 L13 20" stroke="#0f172a" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M15 14 L17 10" stroke="#0f172a" stroke-width="1.6" fill="none" stroke-linecap="round" />
+
+  <!-- Handlebars -->
+  <path d="M17 10 L20 9" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" />
+
+  <!-- Seat post -->
+  <path d="M14 13 L12 10" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" />
+
+  <!-- Geek glasses sitting above/between wheels (integrated with frame) -->
+  <g stroke="#2563eb" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="5" width="6" height="3.6" rx="0.9" />
+    <rect x="20" y="5" width="6" height="3.6" rx="0.9" />
+    <path d="M12 6.4 L20 6.4" />
+  </g>
+
+  <!-- Small accents to make it friendly -->
+  <circle cx="9" cy="22" r="1" fill="#2563eb" />
+  <circle cx="23" cy="22" r="1" fill="#2563eb" />
+
+  <!-- Background rounded square for visibility on dark/bright UI -->
+  <rect x="0.5" y="0.5" width="31" height="31" rx="6" stroke="#e6eefc" stroke-opacity="0.06" fill="#ffffff00" />
+</svg>

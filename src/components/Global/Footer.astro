@@ -1,0 +1,141 @@
+---
+// Footer navigation groups
+const footerNavs = [
+  {
+    title: "About",
+    items: [
+      { text: "このサイトについて", href: "/about" },
+      { text: "運営者のプロフィール", href: "/aboutme" },
+      { text: "お問い合わせ", href: "/contact" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { text: "ルート検索", href: "/routes" },
+      { text: "ブログ", href: "/blog" },
+      { text: "地図", href: "/map" },
+    ],
+  },
+  {
+    title: "Connect",
+    items: [
+      { text: "このサイトを支援する", href: "/giving" },
+    ],
+  },
+];
+
+// Social media links
+const socialLinks = [
+  { 
+    name: "Github",
+    href: "https://github.com/logpiyo", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.468-2.381 1.235-3.221-.123-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.51 11.51 0 0 1 3.003-.403c1.018.005 2.043.138 3.003.403 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.241 2.874.118 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.807 5.623-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.293 0 .319.216.694.825.576C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/>
+        </svg>` 
+  },
+];
+
+// Current year for copyright
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <!-- site Info -->
+      <div>
+        <div class="mb-4">
+          <a href="/" class="text-2xl font-bold text-white font-serif inline-flex items-center">
+            <span class="sr-only">ギークのためのサイクリング</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="h-12 w-auto text-primary-600 mr-2" aria-hidden="true">
+        <!-- Wheels -->
+        <g stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <circle cx="18" cy="46" r="10"/>
+          <circle cx="46" cy="46" r="10"/>
+          <!-- Spokes -->
+          <g>
+        <line x1="18" y1="46" x2="12" y2="40"/>
+        <line x1="18" y1="46" x2="24" y2="40"/>
+        <line x1="46" y1="46" x2="40" y2="40"/>
+        <line x1="46" y1="46" x2="52" y2="40"/>
+          </g>
+          <!-- Frame -->
+          <path d="M18 46 L28 34 L36 34 L46 46"/>
+          <path d="M28 34 L33 24 L36 34"/>
+          <!-- Fork & handlebars -->
+          <path d="M36 34 L40 26 L46 26"/>
+          <path d="M46 26 L50 24"/>
+          <!-- Seat -->
+          <path d="M30 26 L26 24"/>
+        </g>
+
+        <!-- geek glasses (pictogram detail) -->
+        <g fill="currentColor" stroke="none">
+          <rect x="34" y="14" width="6" height="4" rx="0.8"/>
+          <rect x="44" y="14" width="6" height="4" rx="0.8"/>
+          <rect x="40" y="15" width="4" height="1.6" rx="0.4"/>
+        </g>
+
+        <!-- Small circuit accents for "geek" feel -->
+        <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none">
+          <path d="M10 34 L6 28"/>
+          <circle cx="6" cy="28" r="1.2" fill="currentColor"/>
+          <path d="M58 34 L62 28"/>
+          <circle cx="62" cy="28" r="1.2" fill="currentColor"/>
+        </g>
+      </svg>
+            <span>ギークのためのサイクリング</span>
+          </a>
+        </div>
+        
+        <!-- Social Links -->
+        <div class="flex space-x-4 mt-6">
+          {
+            socialLinks.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 hover:text-white transition-colors"
+                aria-label={link.name}
+              >
+                <Fragment set:html={link.icon} />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      
+      <!-- Navigation Links -->
+      {
+        footerNavs.map((group) => (
+          <div>
+            <h4 class="text-lg font-bold mb-4 text-white">{group.title}</h4>
+            <ul class="space-y-2">
+              {group.items.map((item) => (
+                <li>
+                  <a 
+                    href={item.href} 
+                    class="text-gray-300 hover:text-primary-300 transition-colors"
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+    
+    <!-- Copyright -->
+    <div class="pt-8 mt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+      <p>&copy; {currentYear} ギークのためのサイクリング. All rights reserved.</p>
+      <p class="mt-2">
+        <a href="/privacy-policy" class="hover:text-primary-300 mr-4">Privacy Policy</a>
+        <a href="/terms-of-service" class="hover:text-primary-300">Terms of Service</a>
+      </p>
+    </div>
+  </div>
+</footer>

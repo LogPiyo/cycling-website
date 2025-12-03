@@ -1,0 +1,51 @@
+---
+import Navigation from "./Navigation.astro";
+---
+
+<header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md shadow-sm">
+  <div class="container flex items-center justify-between h-20">
+    <a href="/" class="text-2xl font-bold text-primary-800 font-serif flex items-center">
+      <span class="sr-only">ギークのためのサイクリング</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="h-12 w-auto text-primary-600 mr-2" aria-hidden="true">
+        <!-- Wheels -->
+        <g stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <circle cx="18" cy="46" r="10"/>
+          <circle cx="46" cy="46" r="10"/>
+          <!-- Spokes -->
+          <g>
+        <line x1="18" y1="46" x2="12" y2="40"/>
+        <line x1="18" y1="46" x2="24" y2="40"/>
+        <line x1="46" y1="46" x2="40" y2="40"/>
+        <line x1="46" y1="46" x2="52" y2="40"/>
+          </g>
+          <!-- Frame -->
+          <path d="M18 46 L28 34 L36 34 L46 46"/>
+          <path d="M28 34 L33 24 L36 34"/>
+          <!-- Fork & handlebars -->
+          <path d="M36 34 L40 26 L46 26"/>
+          <path d="M46 26 L50 24"/>
+          <!-- Seat -->
+          <path d="M30 26 L26 24"/>
+        </g>
+
+        <!-- geek glasses (pictogram detail) -->
+        <g fill="currentColor" stroke="none">
+          <rect x="34" y="14" width="6" height="4" rx="0.8"/>
+          <rect x="44" y="14" width="6" height="4" rx="0.8"/>
+          <rect x="40" y="15" width="4" height="1.6" rx="0.4"/>
+        </g>
+
+        <!-- Small circuit accents for "geek" feel -->
+        <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none">
+          <path d="M10 34 L6 28"/>
+          <circle cx="6" cy="28" r="1.2" fill="currentColor"/>
+          <path d="M58 34 L62 28"/>
+          <circle cx="62" cy="28" r="1.2" fill="currentColor"/>
+        </g>
+      </svg>
+      <span class="text-primary-800">ギークのためのサイクリング</span>
+    </a>
+    
+    <Navigation />
+  </div>
+</header>

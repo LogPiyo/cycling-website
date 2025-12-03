@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import Card from "../UI/Card.astro";
+import Button from "../UI/Button.astro";
+import { formatDate } from "../../utils/dateUtils";
+
+export interface Props {
+  count?: number;
+  showViewAll?: boolean;
+}
+
+const { count = 3, showViewAll = true } = Astro.props;
+
+// Get blog posts sorted by pubDate (newest first)
+const allPosts = await getCollection("blog", ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+const posts = allPosts
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, count);
+---
+
+<section class="py-16 bg-white">
+  <div class="container">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">新着ブログ記事</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        ギークのためのサイクリング記事をチェックしよう！
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map((post) => (
+        <Card
+          class="shadow-none"
+          title={post.data.title}
+          image={{
+            src: post.data.image?.url || "/uploads/blog/placeholder.webp",
+            alt: post.data.image?.alt || post.data.title
+          }}
+          href={`/blog/${post.slug}`}
+        >
+          <div class="mb-3">
+            <div class="flex items-center text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>{formatDate(post.data.pubDate)}</span>
+            </div>
+
+            {post.data.tags && post.data.tags.length > 0 && (
+              <div class="mt-2 flex flex-wrap gap-2">
+                {post.data.tags.map((tag) => (
+                  <span class="text-xs bg-gray-100 text-gray-800 rounded-full px-2 py-1">{tag}</span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <p class="text-gray-700 mb-4">{post.data.description}</p>
+
+          <p class="text-primary-600 font-medium group-hover:underline group-hover:text-primary-700">
+            ブログ記事を読む →
+          </p>
+        </Card>
+      ))}
+    </div>
+
+    {showViewAll && posts.length > 0 && (
+      <div class="mt-12 text-center">
+        <Button href="/blog" variant="outline">
+          ブログ記事をもっと見る
+        </Button>
+      </div>
+    )}
+  </div>
+</section>
