@@ -9,12 +9,16 @@
     @apply scroll-smooth;
   }
   
+  /* Use CSS variables for colors so we can switch site-wide with the `.dark` class */
   body {
-    @apply font-sans text-gray-800 bg-gray-50;
+    @apply font-sans;
+    background-color: var(--bg);
+    color: var(--text);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold text-gray-900;
+    @apply font-serif font-bold;
+    color: var(--text);
   }
 
   h1 {
@@ -42,6 +46,78 @@
   }
 }
 
+/* -----------------------------
+   Color variables & dark mode
+   ----------------------------- */
+:root {
+  --bg: #f8fafc; /* bg-gray-50 */
+  --text: #0f172a; /* gray-900 */
+  --muted: #6b7280; /* gray-500 */
+  --card: #ffffff; /* white */
+  --border: #e5e7eb; /* gray-200 */
+}
+
+.dark {
+  --bg: #071028; /* deep navy */
+  --text: #ffffff; /* primary text: use pure white for maximum contrast */
+  --muted: #cbd5e1; /* secondary/muted text: light gray for hierarchy */
+  /* card should be slightly lighter than body to stand out */
+  --card: #0b2337; /* subtle lift from background for panels/cards */
+  --border: #1f2b3a; /* border color for contrast against card */
+}
+
+/* Ensure body and text colors update under .dark (higher specificity) */
+.dark body {
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Common utility overrides so many Tailwind utility classes follow the variables in dark mode */
+.dark .bg-white { background-color: var(--card) !important; }
+.dark .bg-gray-50 { background-color: var(--bg) !important; }
+.dark .bg-gray-100 { background-color: var(--bg) !important; }
+.dark .text-gray-900, .dark .text-gray-800, .dark .text-black { color: var(--text) !important; }
+.dark .text-gray-700, .dark .text-gray-600, .dark .text-gray-500 { color: var(--muted) !important; }
+.dark .border-gray-100, .dark .border-gray-200, .dark .border-gray-300 { border-color: var(--border) !important; }
+
+/* Cards/button backgrounds that use white should look correct in dark */
+.dark .card { background-color: var(--card) !important; }
+.dark .btn-outline { background-color: transparent !important; color: var(--text) !important; border-color: var(--border) !important; }
+
+/* If components use subtle gray backgrounds, make them transparent on dark */
+.dark .bg-gray-200, .dark .bg-gray-300 { background-color: rgba(255,255,255,0.03) !important; }
+
+/* Links / primary accents: keep bright colors unless specifically overridden */
+/* Add more overrides here if you encounter other utility classes that need dark variants */
+
+/* Header-specific: make the brand subtitle and icon readable in dark mode */
+.site-subtitle { /* keep light mode blue via tailwind utility on the element */ }
+.site-icon { /* keep light mode color via tailwind utility on the element */ }
+
+.dark .site-subtitle {
+  color: var(--text) !important;
+}
+
+.dark .site-icon {
+  color: var(--text) !important;
+}
+
+/* Ensure SVG strokes/fills follow the color variable in dark mode */
+.dark .site-icon [stroke] {
+  stroke: var(--text) !important;
+}
+/* Only override fills that are explicitly set to `currentColor` (e.g. decorative parts).
+   Do NOT override elements with `fill="none"` (wheels/frame) to avoid unwanted solid fills. */
+.dark .site-icon [fill="currentColor"] {
+  fill: var(--text) !important;
+}
+
+/* Slight lift on the icon to help it stand out against dark backgrounds */
+.dark .site-icon {
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.35));
+}
+
+
 @layer components {
   .container {
     @apply px-4 mx-auto max-w-7xl;
@@ -68,7 +144,9 @@
   }
 
   .card {
-    @apply overflow-hidden transition-all bg-white rounded-lg shadow-md hover:shadow-lg;
+    @apply overflow-hidden transition-all rounded-lg shadow-md hover:shadow-lg;
+    background-color: var(--card);
+    border: 1px solid var(--border);
   }
 }
 

@@ -2,11 +2,11 @@
 import Navigation from "./Navigation.astro";
 ---
 
-<header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md shadow-sm">
+<header class="sticky top-0 z-50 w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm">
   <div class="container flex items-center justify-between h-20">
-    <a href="/" class="text-2xl font-bold text-primary-800 font-serif flex items-center">
+    <a href="/" class="text-2xl font-bold text-primary-800 dark:text-primary-100 font-serif flex items-center site-brand">
       <span class="sr-only">ギークのためのサイクリング</span>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="h-12 w-auto text-primary-600 mr-2" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="h-12 w-auto text-primary-600 mr-2 site-icon" aria-hidden="true">
         <!-- Wheels -->
         <g stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
           <circle cx="18" cy="46" r="10"/>
@@ -43,9 +43,71 @@ import Navigation from "./Navigation.astro";
           <circle cx="62" cy="28" r="1.2" fill="currentColor"/>
         </g>
       </svg>
-      <span class="text-primary-800">ギークのためのサイクリング</span>
+      <span class="text-primary-800 site-subtitle">ギークのためのサイクリング</span>
     </a>
     
-    <Navigation />
+    <div class="flex items-center gap-4">
+      <Navigation />
+      <!-- Theme toggle -->
+      <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
+        <!-- Sun icon (shown in light mode) -->
+        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36 6.36l-1.42-1.42M7.05 7.05 5.64 5.64m12.72 0L17.95 7.05M7.05 16.95 5.64 18.36M12 8a4 4 0 100 8 4 4 0 000-8z" />
+        </svg>
+        <!-- Moon icon (shown in dark mode) -->
+        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
+
+<script>
+  // Theme toggle: store 'theme' in localStorage: 'dark' or 'light'
+  (function () {
+    const toggle = document.currentScript && document.currentScript.previousElementSibling && document.currentScript.previousElementSibling.querySelector
+      ? document.currentScript.previousElementSibling.querySelector('#theme-toggle')
+      : document.getElementById('theme-toggle');
+
+    const iconSun = document.getElementById('icon-sun');
+    const iconMoon = document.getElementById('icon-moon');
+
+    function applyTheme(theme) {
+      const root = document.documentElement;
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        if (iconSun) iconSun.classList.add('hidden');
+        if (iconMoon) iconMoon.classList.remove('hidden');
+      } else {
+        root.classList.remove('dark');
+        if (iconSun) iconSun.classList.remove('hidden');
+        if (iconMoon) iconMoon.classList.add('hidden');
+      }
+    }
+
+    // Initialize
+    try {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark' || stored === 'light') {
+        applyTheme(stored);
+      } else {
+        // follow system preference
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(prefersDark ? 'dark' : 'light');
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    // Toggle handler
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        const next = isDark ? 'light' : 'dark';
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        applyTheme(next);
+      });
+    }
+  })();
+</script>
