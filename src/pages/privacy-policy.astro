@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/Sections/PageHeader.astro';
+---
+
+<BaseLayout
+    title='プライバシーポリシーと免責事項'
+    description='当サイトのプライバシーポリシーおよび免責事項について、Google AdSenseやGoogleアナリティクスによるCookieの利用、個人情報の取り扱い、広告配信、アクセス解析、免責事項の内容をわかりやすくご案内しています。安心してご利用いただくための重要な情報を掲載しています。'
+>
+  <PageHeader 
+    title="このサイトについて" 
+    subtitle="ギークのためのサイクリング情報共有サイトにようこそ！"
+    backgroundImage="/uploads/cycling-default.webp"
+  />
+<section id="privacy" class="py-16">
+  <div class="container">
+    <div class="max-w-3xl mx-auto prose prose-lg dark:prose-invert">
+      <h2 class="text-center">プライバシーポリシー</h2>
+
+      <p>
+        当サイトでは、第三者配信による広告サービス（例：Google AdSense）やアクセス解析ツール（例：Google アナリティクス）を利用しています。これらのサービスはCookieを利用する場合があり、ユーザーの利便性向上やサイト改善に役立てています。
+      </p>
+
+      <h3>広告配信について</h3>
+      <p>
+        Googleを含む第三者広告配信事業者は、ユーザーの過去のアクセス情報に基づいて広告を配信することがあります。ユーザーは
+        <a href="https://adssettings.google.com/authenticated" target="_blank" rel="noopener">広告設定</a>
+        にてパーソナライズ広告を無効にできます。その他、
+        <a href="https://www.aboutads.info/" target="_blank" rel="noopener">aboutads.info</a>
+        などでも第三者配信事業者のCookie利用を管理できます。
+      </p>
+
+      <h3>アクセス解析について</h3>
+      <p>
+        当サイトではGoogleアナリティクス等を利用してトラフィックの分析を行っています。収集するデータは原則匿名化され、個人を特定するものではありません。ブラウザの設定でCookieを無効にすることで収集を拒否いただけます。
+      </p>
+
+      <h3>個人情報の取り扱い</h3>
+      <p>
+        お問い合わせやコメント送信時にご提供いただく名前やメールアドレス等の個人情報は、回答や連絡のために利用し、それ以外の目的での利用や第三者への提供は行いません（法令に基づく場合を除く）。適切な管理を行います。
+      </p>
+
+      <h3>免責事項</h3>
+      <p>
+        掲載情報は正確を期していますが、内容の完全性や安全性を保証するものではありません。掲載情報により生じたいかなる損害についても当サイトは責任を負いかねます。外部サイトへのリンク先の内容についても同様です。
+      </p>
+
+      <hr />
+
+      <h3>運営者情報・連絡先</h3>
+      <p>当サイトは LogPiyo により運営されています。</p>
+      <ul>
+        <li>運営者情報: <a href="/aboutme">aboutページ</a></li>
+        <li>お問い合わせ: <a href="/contact">contactページ</a></li>
+      </ul>
+
+      <p class="text-sm">最終更新日: 2025年12月4日</p>
+    </div>
+  </div>
+</section>
+</BaseLayout>
