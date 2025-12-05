@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import rehypeMermaid from 'rehype-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,9 +12,10 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
-    shikiConfig: {
-      theme: 'github-light',
-      wrap: true
-    }
+    syntaxHighlight: {
+      type: 'shiki',
+      excludeLangs: ['mermaid', `js`, `math`]
+    },
+    rehypePlugins: [rehypeMermaid],
   }
 });
